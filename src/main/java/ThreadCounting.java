@@ -11,7 +11,7 @@ public class ThreadCounting implements Runnable{
     }
 
     // счет до value
-    public void count(){
+    private void count(){
         for(int i=0;i<=toValue;i++){
             System.out.println(i);
         }

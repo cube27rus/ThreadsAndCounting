@@ -21,17 +21,17 @@ public class JSONmachine {
         return jsonObject;
     }
     // прочитать кол-во нитей
-    public static int getThreads(String stringJSON) throws JSONException {
+    static int getThreads(String stringJSON) throws JSONException {
         JSONObject object = new JSONObject(stringJSON); //sampleText is json that has been split by line
         return Integer.parseInt(object.getString("Threads"));
     }
     // прочитать конечное значение
-    public static int getValue(String stringJSON) throws JSONException {
+    static int getValue(String stringJSON) throws JSONException {
         JSONObject object = new JSONObject(stringJSON); //sampleText is json that has been split by line
         return Integer.parseInt(object.getString("toValue"));
     }
     //прочитать строку(json) из файла
-    public static String readFile(String path, Charset encoding)
+    static String readFile(String path, Charset encoding)
             throws IOException
     {
         byte[] encoded = Files.readAllBytes(Paths.get(path));

@@ -3,10 +3,10 @@
  */
 public class ThreadCountingV2 extends Thread{
     //текущее значение которое будем увеличивать
-    static volatile Integer curentValue = 0;
+    static private volatile Integer curentValue = 0;
     //до какого значения
     private  int finalValue;
-    public ThreadCountingV2(int finalValue){
+    ThreadCountingV2(int finalValue){
         this.finalValue=finalValue+1;
     }
     //если текущее значение меньше конечного, то увеличиваем текущее
