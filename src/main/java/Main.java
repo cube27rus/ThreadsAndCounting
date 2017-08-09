@@ -1,20 +1,23 @@
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
 
 public class Main {
     public static void main(String[] args) {
         try {
-            //создаем новый json файл, передаем в него кол-во трэдов и конечное значение
-            JSONObject jsonObject=JSONmachine.generetaJSON(7,15);
+            //читаем json из файла
+            String jsonString = JSONmachine.readFile("./src/main/Threads.json", StandardCharsets.UTF_8);
             //читаем кол-во трэдов
-            int threads =JSONmachine.getThreads(jsonObject.toString());
+            int threads =JSONmachine.getThreads(jsonString);
             //читаем конечное значение
-            int toValue = JSONmachine.getValue(jsonObject.toString());
-            //пока i меньше threads, считаем до toValue в каждой нити
-            for(int i=0;i<threads;i++){
-                new Thread(new ThreadCounting(toValue)).start();
+            final int toValue = JSONmachine.getValue(jsonString);
+            //создаем новые трэды и запускаем их
+            for (int i = 0; i < threads; i++) {
+                    new ThreadCountingV2(toValue).start();
             }
-        } catch (JSONException e) {
+        } catch (IOException  | JSONException e) {
             e.printStackTrace();
         }
     }
